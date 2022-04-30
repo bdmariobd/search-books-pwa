@@ -85,7 +85,7 @@ function Book(props) {
     </div>
   );
 
-  return (
+  /* return (
     <div className="book">
       <div className="book-top">
         <img
@@ -110,7 +110,7 @@ function Book(props) {
       </a>
       <div className="book-authors">{requiredToRender.authors}</div>
     </div>
-  );
+  ); */
 }
 
 export default Book;
