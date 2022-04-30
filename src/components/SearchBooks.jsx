@@ -3,36 +3,33 @@ import { useState } from "react";
 import axios from "axios";
 import Book from "./Book";
 
+const maxResults = 10;
 const SearchBooks = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [bookField, setBookField] = useState("");
   const [authorField, setAuthorField] = useState("");
+  const [optionField, setOptionField] = useState("all");
 
   const onSearch = (event) => {
     event.preventDefault();
-    const query = `https://www.googleapis.com/books/v1/volumes?q=${bookField}${authorField}`;
+    if (bookField === "" && authorField === "") {
+      setError(new Error("Please enter a book or an author"));
+      return;
+    }
+
+    const query = `https://www.googleapis.com/books/v1/volumes?q=${bookField}+inauthor:${authorField}&maxResults=${maxResults}&printType=${optionField}`;
     setLoading(true);
     setError(null);
     axios
       .get(query)
       .then((res) => {
-        const data = res.data.items.map((item) => ({
-          id: item.id,
-          title: item.volumeInfo.title,
-          subtitle: item.volumeInfo.subtitle,
-          description: item.volumeInfo.description,
-          authors: item.volumeInfo.authors,
-          publishedDate: item.volumeInfo.publishedDate,
-          pageCount: item.volumeInfo.pageCount,
-          categories: item.volumeInfo.categories,
-          thumbnail: item.volumeInfo.imageLinks.thumbnail,
-          language: item.volumeInfo.language,
-          previewLink: item.volumeInfo.previewLink,
-          infoLink: item.volumeInfo.infoLink,
-        }));
-        setBooks(data);
+        console.log(res.data.items);
+        if (res.data.totalItems === 0) {
+          throw new Error("No results found");
+        }
+        setBooks(res.data.items);
         setLoading(false);
         console.log(books);
       })
@@ -80,6 +77,7 @@ const SearchBooks = () => {
             type={"radio"}
             name={"selection"}
             value={"books"}
+            onChange={(e) => setOptionField(e.target.value)}
             defaultChecked={false}
           />
           <label htmlFor={"books"}>Books</label>
@@ -87,6 +85,7 @@ const SearchBooks = () => {
             type={"radio"}
             name={"selection"}
             value={"magazines"}
+            onChange={(e) => setOptionField(e.target.value)}
             defaultChecked={false}
           />
           <label htmlFor={"magazines"}>Magazines</label>
@@ -94,6 +93,7 @@ const SearchBooks = () => {
             type={"radio"}
             name={"selection"}
             value={"all"}
+            onChange={(e) => setOptionField(e.target.value)}
             defaultChecked={true}
           />
           <label htmlFor={"all"}>All</label>

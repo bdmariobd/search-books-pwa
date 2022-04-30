@@ -1,17 +1,24 @@
 import React from "react";
+import "./Book.css";
 
 function Book(props) {
   console.log(props);
+  let requiredToRender = {
+    title: props.book.volumeInfo.title,
+    url: props.book.volumeInfo.previewLink,
+    authors: props.book.volumeInfo.authors,
+    thumbnail:
+      props.book.volumeInfo.imageLinks !== undefined
+        ? props.book.volumeInfo.imageLinks.thumbnail
+        : "https://via.placeholder.com/150x236.?text=No+image",
+  };
   return (
     <div className="book">
       <div className="book-top">
-        <div
+        <img
           className="book-cover"
-          style={{
-            width: 128,
-            height: 193,
-            backgroundImage: `url(${props.book.thumbnail})`,
-          }}
+          src={requiredToRender.thumbnail}
+          alt={requiredToRender.title}
         />
         <div className="book-shelf-changer">
           <select>
@@ -25,8 +32,10 @@ function Book(props) {
           </select>
         </div>
       </div>
-      <div className="book-title">{props.book.title}</div>
-      <div className="book-authors">{props.book.authors}</div>
+      <a className="book-title" href={requiredToRender.url}>
+        {requiredToRender.title}
+      </a>
+      <div className="book-authors">{requiredToRender.authors}</div>
     </div>
   );
 }
