@@ -1,14 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
-import Books from './components/Books';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import SearchBooks from './components/SearchBooks';
-
-
-
-
+import logo from "./logo.svg";
+import "./App.css";
+import Books from "./components/Book";
+import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import SearchBooks from "./components/SearchBooks";
 
 function App() {
   return (
@@ -16,12 +12,8 @@ function App() {
       <header className="App-header">
         <p>Google search books</p>
       </header>
-      <div className='app-body'> 
+      <div className="app-body">
         <SearchBooks></SearchBooks>
-        
-        <div className='app-books'>
-
-        </div>
       </div>
     </div>
   );
