@@ -10,7 +10,16 @@ function App() {
   return (
     <div className="App container-fluid p-0">
       <header className="App-header">
-        <p>Google search books</p>
+        <p>
+          <span style={{ color: "#0085f8" }}>G</span>
+          <span style={{ color: "#ff4131" }}>o</span>
+          <span style={{ color: "#febd00" }}>o</span>
+          <span style={{ color: "#0086f8" }}>g</span>
+          <span style={{ color: "#00aa4a" }}>l</span>
+          <span style={{ color: "#ff4131" }}>e</span>
+          <span> </span>
+          Search Books
+        </p>
       </header>
       <div className="app-body">
         <SearchBooks></SearchBooks>

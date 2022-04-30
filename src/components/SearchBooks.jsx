@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import Book from "./Book";
+import "./SearchBooks.css";
+import "../App.css";
 
 const maxResults = 10;
 const SearchBooks = () => {
@@ -74,35 +76,52 @@ const SearchBooks = () => {
         </div>
         <div className="app-selection">
           <input
+            className="app-selection-field"
             type={"radio"}
             name={"selection"}
             value={"books"}
             onChange={(e) => setOptionField(e.target.value)}
             defaultChecked={false}
           />
-          <label htmlFor={"books"}>Books</label>
+          <label className="app-selection-field-label" htmlFor={"books"}>
+            Books
+          </label>
           <input
+            className="app-selection-field"
             type={"radio"}
             name={"selection"}
             value={"magazines"}
             onChange={(e) => setOptionField(e.target.value)}
             defaultChecked={false}
           />
-          <label htmlFor={"magazines"}>Magazines</label>
+          <label className="app-selection-field-label" htmlFor={"magazines"}>
+            Magazines
+          </label>
           <input
+            className="app-selection-field"
             type={"radio"}
             name={"selection"}
             value={"all"}
             onChange={(e) => setOptionField(e.target.value)}
             defaultChecked={true}
           />
-          <label htmlFor={"all"}>All</label>
+          <label className="app-selection-field-label" htmlFor={"all"}>
+            All
+          </label>
         </div>
       </form>
       {loading ? (
         <div class="spinner-border" role="status"></div>
       ) : error ? (
-        <div className="app-error">{error.message}</div>
+        <div class="alert error">
+          <input type="checkbox" id="alert1" />
+          <label class="close" title="close" for="alert1">
+            <i class="icon-remove"></i>
+          </label>
+          <p class="inner">
+            <strong>Warning!</strong> {error.message}
+          </p>
+        </div>
       ) : (
         <div className="app-books">
           {books.map((book) => (
