@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App container-fluid p-0">
       <header className="App-header">
-        <Link to="/">
+        <Link to="/search-books-pwa">
           <p>
             <span style={{ color: "#0085f8" }}>G</span>
             <span style={{ color: "#ff4131" }}>o</span>
@@ -23,7 +23,7 @@ function App() {
             <span style={{ color: "#fff" }}>Search Books </span>
           </p>
         </Link>
-        <Link to="/favs" id="favs-link">
+        <Link to="/search-books-pwa/favs" id="favs-link">
           <button className="btn btn-primary">Favourites</button>
         </Link>
       </header>

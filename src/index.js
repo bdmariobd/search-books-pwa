@@ -17,9 +17,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />}>
+        <Route path="/search-books-pwa" element={<App />}>
           <Route index element={<SearchBooks />} />
-          <Route path="favs" element={<Favourites />} />
+          <Route path="/search-books-pwa/favs" element={<Favourites />} />
         </Route>
       </Routes>
     </BrowserRouter>
