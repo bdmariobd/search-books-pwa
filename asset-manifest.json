@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/search-books-pwa/static/css/main.2c10a895.css",
-    "main.js": "/search-books-pwa/static/js/main.25a0b993.js",
+    "main.css": "/search-books-pwa/static/css/main.c8595dcb.css",
+    "main.js": "/search-books-pwa/static/js/main.63c716e4.js",
     "static/js/787.71f9f3e7.chunk.js": "/search-books-pwa/static/js/787.71f9f3e7.chunk.js",
     "service-worker.js": "/search-books-pwa/service-worker.js",
     "index.html": "/search-books-pwa/index.html",
-    "main.2c10a895.css.map": "/search-books-pwa/static/css/main.2c10a895.css.map",
-    "main.25a0b993.js.map": "/search-books-pwa/static/js/main.25a0b993.js.map",
+    "main.c8595dcb.css.map": "/search-books-pwa/static/css/main.c8595dcb.css.map",
+    "main.63c716e4.js.map": "/search-books-pwa/static/js/main.63c716e4.js.map",
     "787.71f9f3e7.chunk.js.map": "/search-books-pwa/static/js/787.71f9f3e7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2c10a895.css",
-    "static/js/main.25a0b993.js"
+    "static/css/main.c8595dcb.css",
+    "static/js/main.63c716e4.js"
   ]
 }
