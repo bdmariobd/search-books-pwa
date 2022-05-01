@@ -7,7 +7,7 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SearchBooks from './components/SearchBooks';
 import Favourites from './components/Favourites';
-import { ReactNotifications, Store } from 'react-notifications-component'
+import { ReactNotifications } from 'react-notifications-component'
 
 import "react-notifications-component/dist/theme.css";
 
