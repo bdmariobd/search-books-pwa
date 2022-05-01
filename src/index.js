@@ -17,9 +17,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/search-books-pwa" element={<App />}>
+        <Route path="/" element={<App />}>
           <Route index element={<SearchBooks />} />
-          <Route path="/search-books-pwa/favs" element={<Favourites />} />
+          <Route path="/favs" element={<Favourites />} />
         </Route>
       </Routes>
     </BrowserRouter>
@@ -30,6 +30,6 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-serviceWorkerRegistration.register({scope: '/search-books-pwa/'});
+serviceWorkerRegistration.register();
 
 
