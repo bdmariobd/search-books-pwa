@@ -1,10 +1,5 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Books from "./components/Book";
 import "bootstrap/dist/css/bootstrap.min.css";
-import axios from "axios";
-import { useState, useEffect } from "react";
-import SearchBooks from "./components/SearchBooks";
 import { Outlet, Link } from "react-router-dom";
 
 function App() {

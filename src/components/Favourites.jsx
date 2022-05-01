@@ -3,6 +3,7 @@ import Book from "./Book";
 import axios from "axios";
 import "./SearchBooks.css";
 import { useState } from "react";
+import { memo } from "react";
 
 function Favourites() {
   const [books, setBooks] = useState([]);
@@ -10,6 +11,17 @@ function Favourites() {
     localStorage.getItem("favs") === null ||
     localStorage.getItem("favs") === "[]"
   ) {
+    return (
+      <div class="alert error">
+        <input type="checkbox" id="alert1" />
+        <label class="close" title="close" for="alert1">
+          <i class="icon-remove"></i>
+        </label>
+        <p class="inner">
+          <strong>Warning!</strong> No favourites added
+        </p>
+      </div>
+    );
   }
 
   let storedFavs = JSON.parse(localStorage.getItem("favs"));
@@ -19,13 +31,13 @@ function Favourites() {
     reqs.push(axios.get(`https://www.googleapis.com/books/v1/volumes/${book}`));
   });
 
-  Promise.all(reqs)
-    .then(function (values) {
-      setBooks(values.map((res) => res.data));
-    })
-    .then(function () {
-      console.log(books);
-    });
+  Promise.all(reqs).then(function (values) {
+    setBooks(
+      values.map(function (value) {
+        return value.data;
+      })
+    );
+  });
 
   return (
     <div className="app-books">
@@ -36,4 +48,4 @@ function Favourites() {
   );
 }
 
-export default Favourites;
+export default memo(Favourites);

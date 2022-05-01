@@ -17,7 +17,6 @@ function randomColor() {
 }
 
 function Book(props) {
-  console.log("rendering book with props", props);
   const author = useRef(null);
   const body = useRef(null);
   console.log(props);
@@ -88,33 +87,6 @@ function Book(props) {
       </div>
     </div>
   );
-
-  /* return (
-    <div className="book">
-      <div className="book-top">
-        <img
-          className="book-cover"
-          src={requiredToRender.thumbnail}
-          alt={requiredToRender.title}
-        />
-        <div className="book-shelf-changer">
-          <select>
-            <option value="move" disabled>
-              Move to...
-            </option>
-            <option value="currentlyReading">Currently Reading</option>
-            <option value="wantToRead">Want to Read</option>
-            <option value="read">Read</option>
-            <option value="none">None</option>
-          </select>
-        </div>
-      </div>
-      <a className="book-title" href={requiredToRender.url}>
-        {requiredToRender.title}
-      </a>
-      <div className="book-authors">{requiredToRender.authors}</div>
-    </div>
-  ); */
 }
 
 export default memo(Book);
