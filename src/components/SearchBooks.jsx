@@ -129,7 +129,7 @@ const SearchBooks = (props) => {
         </div>
       </form>
       {loading ? (
-        <div className="spinner-border" role="status"></div>
+        <div className="centered spinner-border" role="status"></div>
       ) : (
         <div className="app-books">
           {books.map((book) => (

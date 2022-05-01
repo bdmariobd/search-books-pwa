@@ -19,13 +19,13 @@ function App() {
     <div className="App container-fluid p-0">
       <header className="App-header">
         <Link to="/search-books-pwa/">
-          <p>
-            <span style={{ color: "#0085f8" }}>G</span>
-            <span style={{ color: "#ff4131" }}>o</span>
-            <span style={{ color: "#febd00" }}>o</span>
-            <span style={{ color: "#0086f8" }}>g</span>
-            <span style={{ color: "#00aa4a" }}>l</span>
-            <span style={{ color: "#ff4131" }}>e</span>
+          <p className="waviy">
+            <span style={{ color: "#0085f8", "--i": 1 }}>G</span>
+            <span style={{ color: "#ff4131", "--i": 2 }}>o</span>
+            <span style={{ color: "#febd00", "--i": 3 }}>o</span>
+            <span style={{ color: "#0086f8", "--i": 4 }}>g</span>
+            <span style={{ color: "#00aa4a", "--i": 5 }}>l</span>
+            <span style={{ color: "#ff4131", "--i": 6 }}>e</span>
             <span> </span>
             <span style={{ color: "#fff" }}>Search Books </span>
           </p>

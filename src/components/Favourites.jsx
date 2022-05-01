@@ -2,6 +2,7 @@ import React from "react";
 import Book from "./Book";
 import axios from "axios";
 import "./SearchBooks.css";
+import "../App.css";
 import { useState, useEffect } from "react";
 import { memo } from "react";
 import { Store } from "react-notifications-component";
@@ -97,7 +98,7 @@ function Favourites(props) {
   return (
     <div>
       {loading ? (
-        <div class="spinner-border" role="status"></div>
+        <div class="centered spinner-border" role="status"></div>
       ) : (
         <div className="app-books">
           {books.map((book) => (
