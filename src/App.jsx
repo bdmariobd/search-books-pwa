@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App container-fluid p-0">
       <header className="App-header">
-        <Link to="/search-books-pwa">
+        <Link to="/search-books-pwa/">
           <p>
             <span style={{ color: "#0085f8" }}>G</span>
             <span style={{ color: "#ff4131" }}>o</span>

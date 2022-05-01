@@ -18,10 +18,10 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/search-books-pwa",
+  "start_url": "/search-books-pwa/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff",
   "description": "App to search books",
-  "scope": "/search-books-pwa"
+  "scope": "/search-books-pwa/"
 }
