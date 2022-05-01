@@ -1,19 +1,29 @@
 import React from "react";
 import "./Book.css";
 
+function idFavorite(id) {
+  if (localStorage.getItem("favs") === null) {
+    localStorage.setItem("favs", JSON.stringify([]));
+  }
+  var storedFavs = JSON.parse(localStorage.getItem("favs"));
+  return storedFavs.includes(id);
+}
+
 function FavButton({ id }) {
-  //const [fav, setFav] = React.useState(false);
+  const [fav, setFav] = React.useState(false);
+
+  React.useEffect(() => {
+    setFav(idFavorite(id));
+  }, [id]);
+
   const onFavButtonClick = () => {
-    if (localStorage.getItem("favs") === null) {
-      localStorage.setItem("favs", JSON.stringify([]));
-    }
     var storedFavs = JSON.parse(localStorage.getItem("favs"));
-    if (storedFavs.includes(id)) {
+    if (idFavorite(id)) {
       storedFavs = storedFavs.filter((favId) => favId !== id);
-      //setFav(false);
+      setFav(false);
     } else {
       storedFavs.push(id);
-      //setFav(true);
+      setFav(true);
     }
     localStorage.setItem("favs", JSON.stringify(storedFavs));
   };
@@ -25,6 +35,7 @@ function FavButton({ id }) {
         type="checkbox"
         className="checkbox-fav-button"
         onClick={onFavButtonClick}
+        checked={fav}
       />
       <label for={"favButton" + id}>
         <svg

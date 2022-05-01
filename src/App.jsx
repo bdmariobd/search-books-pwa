@@ -1,8 +1,11 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Outlet, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [firstLanding, setFirstLanding] = useState(true);
+
   return (
     <div className="App container-fluid p-0">
       <header className="App-header">

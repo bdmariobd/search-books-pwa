@@ -2,48 +2,74 @@ import React from "react";
 import Book from "./Book";
 import axios from "axios";
 import "./SearchBooks.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { memo } from "react";
+import { Store } from "react-notifications-component";
 
-function Favourites() {
+function Favourites(props) {
   const [books, setBooks] = useState([]);
-  if (
-    localStorage.getItem("favs") === null ||
-    localStorage.getItem("favs") === "[]"
-  ) {
-    return (
-      <div class="alert error">
-        <input type="checkbox" id="alert1" />
-        <label class="close" title="close" for="alert1">
-          <i class="icon-remove"></i>
-        </label>
-        <p class="inner">
-          <strong>Warning!</strong> No favourites added
-        </p>
-      </div>
-    );
-  }
+  const [loading, setLoading] = useState(false);
 
-  let storedFavs = JSON.parse(localStorage.getItem("favs"));
-  let reqs = [];
+  const getFavs = () => {
+    setLoading(true);
+    if (
+      localStorage.getItem("favs") === null ||
+      localStorage.getItem("favs") === "[]"
+    ) {
+      console.log("No favs");
+      setLoading(false);
+      Store.addNotification({
+        isMobile: true,
+        title: "No Favourites",
+        message: "You have no favourites",
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+          duration: 5000,
+          onScreen: true,
+        },
+      });
+    } else {
+      console.log("Favs found");
+      let storedFavs = JSON.parse(localStorage.getItem("favs"));
+      let reqs = [];
+      storedFavs.forEach(function (book) {
+        reqs.push(
+          axios.get(`https://www.googleapis.com/books/v1/volumes/${book}`)
+        );
+      });
 
-  storedFavs.forEach(function (book) {
-    reqs.push(axios.get(`https://www.googleapis.com/books/v1/volumes/${book}`));
-  });
+      axios.all(reqs).then(
+        axios.spread(function (...responses) {
+          let books = [];
+          responses.forEach(function (response) {
+            books.push(response.data);
+          });
+          setBooks(books);
+          setLoading(false);
+        })
+      );
+    }
+  };
 
-  Promise.all(reqs).then(function (values) {
-    setBooks(
-      values.map(function (value) {
-        return value.data;
-      })
-    );
-  });
+  useEffect(() => {
+    getFavs();
+  }, []);
 
   return (
-    <div className="app-books">
-      {books.map((book) => (
-        <Book book={book}></Book>
-      ))}
+    <div>
+      {loading ? (
+        <div class="spinner-border" role="status"></div>
+      ) : (
+        <div className="app-books">
+          {books.map((book) => (
+            <Book book={book}></Book>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

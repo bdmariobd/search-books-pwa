@@ -7,6 +7,9 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SearchBooks from './components/SearchBooks';
 import Favourites from './components/Favourites';
+import { ReactNotifications, Store } from 'react-notifications-component'
+
+import "react-notifications-component/dist/theme.css";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -15,6 +18,7 @@ if (localStorage.getItem('favs') === null) {
 }
 root.render(
     <BrowserRouter>
+    <ReactNotifications />
       <Routes>
         <Route path="/search-books-pwa/" element={<App />}>
           <Route index element={<SearchBooks />} />

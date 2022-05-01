@@ -1,18 +1,37 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Book from "./Book";
 import "./SearchBooks.css";
 import "../App.css";
+import { Store } from "react-notifications-component";
 
 const maxResults = 10;
-const SearchBooks = () => {
+const SearchBooks = (props) => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [bookField, setBookField] = useState("");
   const [authorField, setAuthorField] = useState("");
   const [optionField, setOptionField] = useState("all");
+
+  useEffect(() => {
+    if (!error) return;
+    Store.addNotification({
+      isMobile: true,
+      title: "Error",
+      message: error.message,
+      type: "danger",
+      insert: "top",
+      container: "top-right",
+      animationIn: ["animated", "fadeIn"],
+      animationOut: ["animated", "fadeOut"],
+      dismiss: {
+        duration: 5000,
+        onScreen: true,
+      },
+    });
+  }, [error]);
 
   const onSearch = (event) => {
     event.preventDefault();
@@ -110,17 +129,7 @@ const SearchBooks = () => {
         </div>
       </form>
       {loading ? (
-        <div class="spinner-border" role="status"></div>
-      ) : error ? (
-        <div class="alert error">
-          <input type="checkbox" id="alert1" />
-          <label class="close" title="close" for="alert1">
-            <i class="icon-remove"></i>
-          </label>
-          <p class="inner">
-            <strong>Warning!</strong> {error.message}
-          </p>
-        </div>
+        <div className="spinner-border" role="status"></div>
       ) : (
         <div className="app-books">
           {books.map((book) => (
