@@ -14,6 +14,10 @@
 /* #Primary
 ================================================== */
 
+a {
+  text-decoration: none !important;
+}
+
 .App {
   overflow-x: hidden;
   font-family: "Poppins", sans-serif;
@@ -32,8 +36,12 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.App-header a:first-child,
+.App-header a:last-child {
+  margin-left: auto;
+}
 
-.app-body {
+.App-header .app-body {
   display: flex;
   flex-direction: row;
   align-items: center;

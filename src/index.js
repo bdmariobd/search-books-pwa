@@ -4,12 +4,25 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import SearchBooks from './components/SearchBooks';
+import Favourites from './components/Favourites';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+if (localStorage.getItem('favs') === null) {
+  localStorage.setItem('favs', JSON.stringify([]));
+}
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route index element={<SearchBooks />} />
+          <Route path="favs" element={<Favourites />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

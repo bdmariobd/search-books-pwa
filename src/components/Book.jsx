@@ -17,14 +17,16 @@ function randomColor() {
 }
 
 function Book(props) {
-  console.log(props.book);
+  console.log("rendering book with props", props);
   const author = useRef(null);
   const body = useRef(null);
   console.log(props);
   let requiredToRender = {
     title: props.book.volumeInfo.title,
     url: props.book.volumeInfo.previewLink,
-    authors: props.book.volumeInfo.authors.toString(),
+    authors: props.book.volumeInfo.authors
+      ? "by " + props.book.volumeInfo.authors.toString()
+      : "",
     thumbnail:
       props.book.volumeInfo.imageLinks !== undefined
         ? props.book.volumeInfo.imageLinks.thumbnail
@@ -73,7 +75,7 @@ function Book(props) {
             </div>
           </div>
           <div class="author" ref={author}>
-            by {requiredToRender.authors}
+            {requiredToRender.authors}
           </div>
           <div class="body" ref={body}>
             <p>

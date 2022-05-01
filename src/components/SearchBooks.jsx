@@ -33,7 +33,6 @@ const SearchBooks = () => {
         }
         setBooks(res.data.items);
         setLoading(false);
-        console.log(books);
       })
       .catch((err) => {
         setError(err);
