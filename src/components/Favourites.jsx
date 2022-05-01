@@ -35,6 +35,42 @@ function Favourites(props) {
     } else {
       console.log("Favs found");
       let storedFavs = JSON.parse(localStorage.getItem("favs"));
+      let savedBook = [];
+      storedFavs.forEach((id) => {
+        if (localStorage.getItem("book-" + id)) {
+          savedBook.push(JSON.parse(localStorage.getItem("book-" + id)));
+          storedFavs = storedFavs.filter((favId) => favId !== id);
+        }
+      });
+
+      console.log(savedBook);
+
+      if (storedFavs.length === 0) {
+        setLoading(false);
+        setBooks(savedBook);
+        return;
+      }
+
+      if (storedFavs.length > 0 && !navigator.onLine) {
+        setLoading(false);
+        setBooks(savedBook);
+        Store.addNotification({
+          isMobile: true,
+          title: "No Internet",
+          message: "Could not load all your favourites",
+          type: "danger",
+          insert: "top",
+          container: "top-right",
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: {
+            duration: 5000,
+            onScreen: true,
+          },
+        });
+        return;
+      }
+
       let reqs = [];
       storedFavs.forEach(function (book) {
         reqs.push(
@@ -44,11 +80,10 @@ function Favourites(props) {
 
       axios.all(reqs).then(
         axios.spread(function (...responses) {
-          let books = [];
           responses.forEach(function (response) {
-            books.push(response.data);
+            savedBook.push(response.data);
           });
-          setBooks(books);
+          setBooks(savedBook);
           setLoading(false);
         })
       );

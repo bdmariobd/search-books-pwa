@@ -70,7 +70,7 @@ function Book(props) {
                 : requiredToRender.title}
             </a>
             <div class="icon">
-              <FavButton id={props.book.id} />
+              <FavButton id={props.book.id} book={props.book} />
             </div>
           </div>
           <div class="author" ref={author}>

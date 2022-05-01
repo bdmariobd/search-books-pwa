@@ -9,7 +9,7 @@ function idFavorite(id) {
   return storedFavs.includes(id);
 }
 
-function FavButton({ id }) {
+function FavButton({ id, book }) {
   const [fav, setFav] = React.useState(false);
 
   React.useEffect(() => {
@@ -20,9 +20,13 @@ function FavButton({ id }) {
     var storedFavs = JSON.parse(localStorage.getItem("favs"));
     if (idFavorite(id)) {
       storedFavs = storedFavs.filter((favId) => favId !== id);
+      localStorage.removeItem("book-" + id);
       setFav(false);
     } else {
       storedFavs.push(id);
+      console.log(book);
+      console.log(id);
+      localStorage.setItem("book-" + id, JSON.stringify(book));
       setFav(true);
     }
     localStorage.setItem("favs", JSON.stringify(storedFavs));
