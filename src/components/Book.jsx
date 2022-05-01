@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import "./Book.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import FavButton from "./FavButton";
+import { memo } from "react";
 
 const possbleColors = [
   "#f3b1cd",
@@ -16,13 +17,14 @@ function randomColor() {
 }
 
 function Book(props) {
+  console.log(props.book);
   const author = useRef(null);
   const body = useRef(null);
   console.log(props);
   let requiredToRender = {
     title: props.book.volumeInfo.title,
     url: props.book.volumeInfo.previewLink,
-    authors: props.book.volumeInfo.authors,
+    authors: props.book.volumeInfo.authors.toString(),
     thumbnail:
       props.book.volumeInfo.imageLinks !== undefined
         ? props.book.volumeInfo.imageLinks.thumbnail
@@ -67,7 +69,7 @@ function Book(props) {
                 : requiredToRender.title}
             </a>
             <div class="icon">
-              <FontAwesomeIcon icon="fa-solid fa-chevron-down" />
+              <FavButton id={props.book.id} />
             </div>
           </div>
           <div class="author" ref={author}>
@@ -113,4 +115,4 @@ function Book(props) {
   ); */
 }
 
-export default Book;
+export default memo(Book);
